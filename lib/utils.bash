@@ -5,6 +5,7 @@ set -euo pipefail
 # TODO: Ensure this is the correct GitHub homepage where releases can be downloaded for backplane-cli.
 GH_REPO="https://github.com/openshift/backplane-cli"
 TOOL_NAME="backplane-cli"
+TOOL_COMMAND="ocm-backplane"
 TOOL_TEST="ocm-backplane help"
 
 OS_STRING="$(uname -s)"
@@ -45,8 +46,8 @@ download_release() {
   filename="$2"
 
   # TODO: Adapt the release URL convention for backplane-cli
-
-  url="$GH_REPO/releases/download/v${version}/${TOOL_NAME}_${version}_${OS_STRING}_${ARCH_STRING}.tar.gz"
+  # https://github.com/openshift/backplane-cli/releases/download/v0.1.3/ocm-backplane_0.1.3_Linux_x86_64.tar.gz
+  url="$GH_REPO/releases/download/v${version}/${TOOL_COMMAND}_${version}_${OS_STRING}_${ARCH_STRING}.tar.gz"
   echo "* Downloading $TOOL_NAME release $version..."
   curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
 }
